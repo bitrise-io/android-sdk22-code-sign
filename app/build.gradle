@@ -11,6 +11,17 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        debug {
+            storeFile file(System.getenv("HOME") + "/.android/debug.keystore")
+        }
+        release {
+            storeFile file("./_tmp/android.keystore")
+            storePassword "bitrise-android-keystore-1234"
+            keyAlias "bitrise-android-test"
+            keyPassword "bitrise-android-keypass-1234"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false

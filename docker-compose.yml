@@ -1,0 +1,8 @@
+app:
+  image: bitriseio/docker-android:latest
+  command: bitrise --version
+  volumes:
+    - .:/bitrise/src
+  working_dir: /bitrise/src
+  environment:
+    CI: false

@@ -10,6 +10,18 @@ trigger_map:
   is_pull_request_allowed: true
   workflow: primary
 workflows:
+  generate-keystore:
+    steps:
+    - script:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -e
+            set -x
+            mkdir -p ./_tmp
+            echo y | keytool -genkeypair -dname "cn=Mark Jones, ou=JavaSoft, o=Sun, c=US" \
+              -alias bitrise-android-test -keypass bitrise-android-keypass-1234 -keystore ./_tmp/android.keystore \
+              -storepass bitrise-android-keystore-1234 -validity 9999
   primary:
     steps:
     - git-clone@3.0.0:
