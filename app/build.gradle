@@ -16,16 +16,21 @@ android {
             storeFile file(System.getenv("HOME") + "/.android/debug.keystore")
         }
         release {
-            storeFile file("./_tmp/android.keystore")
+            storeFile file("../_tmp/android.keystore")
             storePassword "bitrise-android-keystore-1234"
             keyAlias "bitrise-android-test"
             keyPassword "bitrise-android-keypass-1234"
         }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
         }
     }
 }
